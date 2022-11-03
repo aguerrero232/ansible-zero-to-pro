@@ -1,0 +1,76 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+    background-color: #0d1116;
+    color: #fff;
+}
+
+* {
+    box-sizing: content-box;
+}
+
+.page-header {
+    color: #fff;
+    text-align: center;
+    background-color: #3970e4;
+    background-image: linear-gradient(120deg, #155799, #2813b1);
+}
+
+.main-content code {
+    color: #fff;
+    background-color: #5A5A5A;
+}
+
+.main-content pre {
+    color: whitesmoke;
+    background-color: #1d2126;
+    border: #0c0c0c;
+}
+
+.main-content pre > code {
+    color: whitesmoke;
+    background-color: #1d2126;
+    border: #0c0c0c;
+}
+
+.main-content .highlight pre,
+.main-content pre {
+    border-radius: 0;
+}
+
+
+.highlight .nt {
+    color: #ffff00;
+}
+
+
+.highlight .na,
+.highlight .nb {
+    color: #8471ff;
+}
+
+.highlight .s,
+.highlight .m,
+.highlight .o {
+    color: cyan;
+}
+
+
+
+.highlight .k,
+.highlight .kv {
+    color: #33ffba;
+    font-weight: bold;
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+    color: whitesmoke;
+}

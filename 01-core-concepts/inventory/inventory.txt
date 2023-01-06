@@ -1,0 +1,8 @@
+
+[group1]
+target1 ansible_connection=community.docker.docker
+target2 ansible_connection=community.docker.docker
+
+[group2]
+target3 ansible_connection=community.docker.docker
+target4 ansible_connection=community.docker.docker

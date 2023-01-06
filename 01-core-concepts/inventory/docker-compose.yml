@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  target1:
+    build:
+      context: .
+  target2:
+    build:
+      context: .
+  target3:
+    build:
+      context: .
+  target4:
+    build:
+      context: .

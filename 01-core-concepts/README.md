@@ -3,7 +3,7 @@
 
 * 🏠 [**home**](../README.md)
 * 🧠 **core-concepts**:
-
+    * 🧳 [**inventory**](inventory/README.md)
 <br />
 
 ## **Description** 👀

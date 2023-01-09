@@ -1,10 +1,8 @@
-FROM fedora:rawhide
+FROM fedora:latest
 MAINTAINER http://fedoraproject.org/wiki/Cloud
 
 ENV container docker
-
 RUN dnf -y update && dnf clean all
-
 RUN dnf -y install systemd && dnf clean all && \
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
 rm -f /lib/systemd/system/multi-user.target.wants/*;\
@@ -20,5 +18,5 @@ RUN dnf -y install python3-pip python3; \
     dnf -y install ansible; \
     ansible-doc -t connection -l 
 
-VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]
-CMD ["/usr/sbin/init"]
+# VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]
+# CMD ["/usr/sbin/init"]

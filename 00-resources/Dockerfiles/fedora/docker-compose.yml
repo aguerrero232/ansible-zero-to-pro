@@ -2,7 +2,9 @@ version: '3.9'
 
 services:
   target: &target
+    # privileged: true 
+    tty: true   
     scale: 4
-    tty: true
     build:
       context: .
+      dockerfile: Dockerfile    

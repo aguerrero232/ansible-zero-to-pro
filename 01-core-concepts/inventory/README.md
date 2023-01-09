@@ -66,7 +66,84 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 ## **Testing** 🧪
 
-  * refer to this [**link**](../../00-resources/README.md#usage-steps-) for a solution
+**refer to this** [**link**](../../00-resources/README.md#usage-steps-) to get up and running
+
+* `inventory.txt` containing **two** groups and **four** targets.
+  
+    ```yaml
+  [group1]
+  inventory_target_1 ansible_connection=community.docker.docker
+  inventory_target_2 ansible_connection=community.docker.docker
+
+  [group2]
+  inventory_target_3 ansible_connection=community.docker.docker
+  inventory_target_4 ansible_connection=community.docker.docker
+    ```
+
+* `ping` **all** the inventory targets
+
+  ```shell
+  ansible -m ping all -i inventory.txt
+  ```
+
+  * output
+
+    ````bash
+    inventory_target_3 | SUCCESS => {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3"
+        },
+        "changed": false,
+        "ping": "pong"
+    }
+    inventory_target_2 | SUCCESS => {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3"
+        },
+        "changed": false,
+        "ping": "pong"
+    }
+    inventory_target_1 | SUCCESS => {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3"
+        },
+        "changed": false,
+        "ping": "pong"
+    }
+    inventory_target_4 | SUCCESS => {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3"
+        },
+        "changed": false,
+        "ping": "pong"
+    }
+    ````
+
+
+* ping `group1` inventory targets
+
+  ```shell
+  ansible -m ping group1 -i inventory.txt
+  ```
+
+  * output
+
+    ```bash
+    inventory_target_2 | SUCCESS => {
+          "ansible_facts": {
+              "discovered_interpreter_python": "/usr/bin/python3"
+          },
+          "changed": false,
+          "ping": "pong"
+      }
+      inventory_target_1 | SUCCESS => {
+          "ansible_facts": {
+              "discovered_interpreter_python": "/usr/bin/python3"
+          },
+          "changed": false,
+          "ping": "pong"
+      }
+      ```
 
 
 

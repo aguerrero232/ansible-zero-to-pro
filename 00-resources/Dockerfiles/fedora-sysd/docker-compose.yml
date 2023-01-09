@@ -2,6 +2,18 @@ version: '3.9'
 
 services:
   target: &target
+    privileged: true 
+    tty: true   
+    scale: 4
+
     build:
       context: .
-    scale: 4
+      dockerfile: Dockerfile    
+
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+      - /tmp:/tmp
+      - /run:/run
+      - /run/lock:/run/lock
+
+    command: /bin/bash -c "/usr/sbin/init" 

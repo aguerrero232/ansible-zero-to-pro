@@ -28,15 +28,11 @@ Resources for the `Ansible` ***Zero to Pro Guide***. Has images, pdfs, and links
 
 This is a collection of helpful content for the `Ansible` ***Zero to Pro Guide***. It is not a part of `Ansible`, but it is helpful for learning `Ansible`.
 
-## ***Running in Docker-Compose*** 🐳<sup>🐳</sup>
+### ***Running in Docker-Compose*** 🐳<sup>🐳</sup>
 
-<!-- use fedora to learn ansible, bleeding edge
-  out of the box, ansible is installed and python 3.11
--->
+This will get you up and running with ansible. The below configuration will be starting up **four** `docker containers` using `fedora` as the base image with ansible installed.
 
-This will get you started with ansible by running four docker containers with ansible installed through docker-compose starting up four docker containers using fedora as the base image with ansible installed.
-
-* ### ***Dockerfile***
+* ***Dockerfile***
 
   ```Dockerfile
   FROM fedora:latest
@@ -44,11 +40,10 @@ This will get you started with ansible by running four docker containers with an
       ansible-doc -t connection -l 
   ```
 
-* ### ***docker-compose.yml***
+* ***docker-compose.yml***
 
   ```yaml
   version: '3.9'
-
   services:
     target: &target
       tty: true   
@@ -165,9 +160,8 @@ This will get you started with ansible by running four docker containers with an
   dnf whatprovides ps
   ```
 
-  * freebie its `procps-ng`
+  * **freebie**, it's `procps-ng`
 
     ```shell
     dnf install procps-ng
     ```
-

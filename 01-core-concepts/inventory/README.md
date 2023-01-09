@@ -66,7 +66,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 ## **Testing** 🧪
 
-**refer to this** [**link**](../../00-resources/README.md#usage-steps-) to get up and running
+**refer to this** [**link**](../../00-resources/README.md#running-in-docker-compose-) to get up and running
 
 * `inventory.txt` containing **two** groups and **four** targets.
   

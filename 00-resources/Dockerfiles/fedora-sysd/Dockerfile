@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:rawhide
 ENV container docker
 RUN dnf -y update && dnf clean all
 

@@ -1,21 +1,28 @@
 version: '3.9'
 
 services:
+
   target: &target
-    privileged: true 
-    tty: true   
     scale: 4
     build:
       context: .
       dockerfile: Dockerfile    
     
+    command: /bin/bash -c "/usr/sbin/init"
+
+    privileged: true 
+    tty: true   
     security_opt:
       - seccomp:unconfined
 
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - /tmp:/tmp
-      - /run:/run
-      - /run/lock:/run/lock
 
-    command: /bin/bash -c "/usr/sbin/init" 
+configs:
+  inventory:
+    file: ../../inventory-samples/inventory.txt

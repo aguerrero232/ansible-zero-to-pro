@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  target: &target
+    tty: true   
+    scale: 4
+    build:
+      context: .
+      dockerfile: Dockerfile    

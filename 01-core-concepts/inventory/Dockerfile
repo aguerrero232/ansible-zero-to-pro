@@ -15,9 +15,9 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-# added this, forgot if fedora has it by default?
-RUN dnf -y install ansible; \
-    ansible-doc -t connection -l 
+# # added this, forgot if fedora has it by default?
+# RUN dnf -y install ansible; \
+#     ansible-doc -t connection -l 
 
 VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]
 CMD ["/usr/sbin/init"]

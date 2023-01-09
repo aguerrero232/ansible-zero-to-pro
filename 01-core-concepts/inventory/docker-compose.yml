@@ -4,3 +4,4 @@ services:
   target: &target
     build:
       context: .
+    scale: 4

@@ -39,8 +39,8 @@ This is a collection of helpful content for the `Ansible` ***Zero to Pro Guide**
 ```Dockerfile
 FROM fedora:latest
 
-RUN dnf install python3-pip python3 -y; \
-    dnf install ansible; \
+RUN dnf -y install python3-pip python3; \
+    dnf -y install ansible; \
     ansible-doc -t connection -l 
 ```
 

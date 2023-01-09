@@ -16,7 +16,8 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # added this, forgot if fedora has it by default?
-RUN dnf -y install ansible; \
+RUN dnf -y install python3-pip python3; \
+    dnf -y install ansible; \
     ansible-doc -t connection -l 
 
 VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]

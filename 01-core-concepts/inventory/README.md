@@ -64,7 +64,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 <br />
 
-## **Testing It Out** 🧪
+## **Testing** 🧪
 
 
 

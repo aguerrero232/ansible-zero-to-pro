@@ -53,7 +53,7 @@ This will get you up and running with ansible. The below configuration will be s
         dockerfile: Dockerfile    
   ```
 
-### ***Usage Steps*** 👣
+***Usage Steps*** 👣
 
   1. Build the containers
 
@@ -69,16 +69,16 @@ This will get you up and running with ansible. The below configuration will be s
 
 <br />
 
-## ***YAML***  <img src="../assets/img/yaml.png" width="26px">
+### ***YAML***  <img src="../assets/img/yaml.png" width="26px">
 
 `YAML` is a ***human-readable data serialization language***. It is commonly used for *configuration files* and in applications where data is being stored or transmitted. `YAML` is stored in **key value pairs** and can be used to serialize data structures such as *maps, sequences, and scalars*.
 
-### `YAML` **Syntax**
+`YAML` **Syntax**
 
 * `YAML` is case sensitive
 * Comments are created using the # symbol
 
-### **Examples** 🧩
+**Examples** 🧩
 
 * key value pairs
 
@@ -140,7 +140,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 <br>
 
-## **Useful** `Commands` in ***Fedora*** &nbsp;<img src="../assets/img/fedora_logo.png" width="25px">
+### **Useful** `Commands` in ***Fedora*** &nbsp;<img src="../assets/img/fedora_logo.png" width="25px">
 
 * installs core utils
 

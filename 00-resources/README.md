@@ -34,7 +34,7 @@ This is a collection of helpful content for the `Ansible` ***Zero to Pro Guide**
   out of the box, ansible is installed and python 3.11
 -->
 
-This will get you started with ansible by running four docker containers with ansible installed through docker-compose. 
+This will get you started with ansible by running four docker containers with ansible installed through docker-compose starting up four docker containers using fedora as the base image with ansible installed.
 
 * ### ***Dockerfile***
 
@@ -72,6 +72,79 @@ This will get you started with ansible by running four docker containers with an
       docker-compose up
       ```
 
+<br />
+
+## ***YAML***  <img src="../assets/img/yaml.png" width="26px">
+
+`YAML` is a ***human-readable data serialization language***. It is commonly used for *configuration files* and in applications where data is being stored or transmitted. `YAML` is stored in **key value pairs** and can be used to serialize data structures such as *maps, sequences, and scalars*.
+
+### `YAML` **Syntax**
+
+* `YAML` is case sensitive
+* Comments are created using the # symbol
+
+### **Examples** 🧩
+
+* key value pairs
+
+  ```yaml
+  Fruit: Apple
+  Vegetable: Carrot
+  Liquid: Water
+  Meat: Chicken
+  ```
+
+* arrays / lists
+
+  ```yaml
+  Fruits:
+    - Orange
+    - Apple
+    - Banana
+
+  Vegetables:
+    - Carrot 
+    - Cauliflower
+    - Tomato
+  ```
+
+* dictionary / map
+
+  ```yaml
+  Banana:
+      Calories: 105
+      Fat: 0.4g
+      Carbs: 27g
+
+  Grapes:
+      Calories: 62
+      Fat: 0.3g
+      Carbs: 16g
+  ```
+
+* key value / dictionary / lists
+
+  ```yaml
+  Fruits:
+    - Banana:
+        Calories: 105
+        Fat: 0.4g
+        Carbs: 27g
+
+    - Grapes:
+        Calories: 62
+        Fat: 0.3g
+        Carbs: 16g
+  ```
+
+***Notice the alignment, this is important in yaml.***
+
+* You can *either* set a value or a list/dictionary/map but *not both*
+
+* `Dictionaries` are an *unordered collection* while `lists` are *ordered*
+
+<br>
+
 ## **Useful** `Commands` in ***Fedora*** &nbsp;<img src="../assets/img/fedora_logo.png" width="25px">
 
 * installs core utils
@@ -97,3 +170,4 @@ This will get you started with ansible by running four docker containers with an
     ```shell
     dnf install procps-ng
     ```
+

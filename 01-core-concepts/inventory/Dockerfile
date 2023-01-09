@@ -1,6 +1,13 @@
 FROM fedora:latest
-ENV container docker
-RUN dnf -y update && dnf clean all
-RUN dnf -y install python3-pip python3; \
-    dnf -y install ansible; \
-    ansible-doc -t connection -l 
+
+# RUN dnf -y update
+
+RUN dnf -y install ansible; \
+    dnf -y install python3-pip; \
+    ansible-doc -t connection -l
+
+# RUN dnf clean all
+
+# RUN python3 --version;\
+#     pip --version;\
+#     ansible --version

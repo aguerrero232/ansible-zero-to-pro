@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   target: &target
+    scale: 4
+    tty: true
     build:
       context: .
-    scale: 4

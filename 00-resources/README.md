@@ -28,39 +28,50 @@ Resources for the `Ansible` ***Zero to Pro Guide***. Has images, pdfs, and links
 
 This is a collection of helpful content for the `Ansible` ***Zero to Pro Guide***. It is not a part of `Ansible`, but it is helpful for learning `Ansible`.
 
-## **Sample Container** 🐳
+## ***Running in Docker-Compose*** 🐳<sup>🐳</sup>
 
 <!-- use fedora to learn ansible, bleeding edge
   out of the box, ansible is installed and python 3.11
 -->
 
-### ***Dockerfile***
+This will get you started with ansible by running four docker containers with ansible installed through docker-compose. 
 
-```Dockerfile
-FROM fedora:latest
+* ### ***Dockerfile***
 
-RUN dnf -y install python3-pip python3; \
-    dnf -y install ansible; \
-    ansible-doc -t connection -l 
-```
+  ```Dockerfile
+  FROM fedora:latest
 
-### ***Usage Steps*** 📝
+  RUN dnf -y install python3-pip python3; \
+      dnf -y install ansible; \
+      ansible-doc -t connection -l 
+  ```
 
-1. Build the container
+* ### ***docker-compose.yml***
 
-    ```shell
-    docker build -t ansible .
-    ```
+  ```yaml
+  version: '3.9'
 
-2. Run or Exec the container
+  services:
+    target: &target
+      scale: 4
+      tty: true
+      build:
+        context: .
+  ```
 
-    ```shell
-    docker run -it ansible
-    ```
+### ***Usage Steps*** 👣
 
-    ```shell
-    docker exec -it ansible --name <container-name-of-your-choice> 
-    ```
+  1. Build the containers
+
+      ```shell
+      docker-compose build
+      ```
+
+  2. Run the containers
+
+      ```shell
+      docker-compose up
+      ```
 
 ## **Useful** `Commands` in ***Fedora*** &nbsp;<img src="../assets/img/fedora_logo.png" width="25px">
 

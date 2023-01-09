@@ -40,9 +40,7 @@ This will get you started with ansible by running four docker containers with an
 
   ```Dockerfile
   FROM fedora:latest
-
-  RUN dnf -y install python3-pip python3; \
-      dnf -y install ansible; \
+  RUN dnf -y install ansible; \
       ansible-doc -t connection -l 
   ```
 
@@ -53,10 +51,11 @@ This will get you started with ansible by running four docker containers with an
 
   services:
     target: &target
+      tty: true   
       scale: 4
-      tty: true
       build:
         context: .
+        dockerfile: Dockerfile    
   ```
 
 ### ***Usage Steps*** 👣

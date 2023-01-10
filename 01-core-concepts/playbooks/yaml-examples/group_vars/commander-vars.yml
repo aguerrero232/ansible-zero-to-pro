@@ -1,0 +1,5 @@
+---
+
+group_name: "commanders"
+lookup_target: "http://google.com"
+logs_dir: "/target_logs"

@@ -1,0 +1,22 @@
+-
+  name: ship logs
+  hosts: ships
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+    log: "inventory_hostname: {{inventory_hostname}}, host-name: {{ansible_hostname}}, date: {{ansible_date_time.date}}, time: {{ansible_date_time.time}}"
+  tasks:
+
+    - name: writing {{play_name}}...
+      copy: 
+        content: "{{log}}"
+        dest: "{{log_dir}}/{{inventory_hostname}}-ship.txt"
+
+    - name: reading {{play_name}}...
+      command: "cat {{log_dir}}/{{inventory_hostname}}-ship.txt"
+      register: result
+
+    - name: printing {{play_name}}...
+      ansible.builtin.debug:
+        msg: "{{ result }}"
+      when: result is success

@@ -1,0 +1,19 @@
+-
+  name: commanders setup 
+  hosts: commanders
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+  tasks:
+    - name: create commander file
+      command: "touch {{log_dir}}/{{inventory_hostname}}-commander.txt"
+      register: file_status
+
+    - name: set env variable
+      ansible.builtin.set_fact:
+        COMMANDER_SETUP: 1
+      when: file_status is success
+
+    - name: finishing commanders setup
+      ansible.builtin.debug:
+        msg: "commanders init complete..."

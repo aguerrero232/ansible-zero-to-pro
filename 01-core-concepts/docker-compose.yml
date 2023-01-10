@@ -2,14 +2,20 @@ version: '3.9'
 
 services:
   target: &target
-    image: target
     tty: true   
     scale: 4
+    env_file: target.env
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - target_logs:/target_logs
 
+  controller: 
+    <<: *target
+    scale: 1
+    env_file: controller.env
+    volumes:
+      - target_logs:/target_logs
 volumes:
   target_logs: {}

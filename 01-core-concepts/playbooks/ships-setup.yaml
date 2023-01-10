@@ -1,0 +1,20 @@
+-
+  name: ships setup
+  hosts: ships
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+  tasks:
+    - name: create ship file
+      command: "touch {{log_dir}}/{{inventory_hostname}}-ship.txt"
+      register: file_status
+      when: dir_status is success
+
+    - name: set env variable
+      ansible.builtin.set_fact:
+        SHIPS_SETUP: 1
+      when: file_status is success
+
+    - name: finishing ships setup
+      ansible.builtin.debug:
+        msg: "ships init complete..."

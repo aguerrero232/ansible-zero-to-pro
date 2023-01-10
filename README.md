@@ -16,3 +16,10 @@
 <br />
 
 
+## **CLI** <image src="assets/img/ansible.png" width="28px">
+
+* `ansible` **docs**
+
+    ```shell
+    ansible-doc -l
+    ```

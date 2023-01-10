@@ -6,9 +6,16 @@
 
 Information about the target machines is stored in an `inventory`. The `inventory` is a file that contains a list of hosts and groups of hosts. The `inventory` file is located in the `/etc/ansible/hosts` directory by default.
 
-<!-- <br />
+<br />
 
-## **Basic** `Commands` 📝 -->
+## **Basic** `Commands` 📝
+
+
+* **ping** to test the `inventory`
+
+    ```shell
+    ansible <host-or-group> -m ping -i <inventory-config-file>
+    ```
 
 <br />
 
@@ -60,6 +67,41 @@ Information about the target machines is stored in an `inventory`. The `inventor
     server3.company.com
     server4.company.com
     ```
+
+* inventory file with linux web servers and windows db servers
+
+    ```yaml
+    web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+    web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+    web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+    db1 ansible_host=server4.company.com ansible_connection=winrm ansible_user=administrator ansible_password=ansible_password=Password123!
+    ```
+
+    * grouping the servers
+
+        ```yaml
+        # -- servers
+        # web servers
+        web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+        web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+        web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+        # db servers
+        db1 ansible_host=server4.company.com ansible_connection=winrm ansible_user=administrator ansible_password=Password123!
+
+        # -- groups --
+        # all web servers
+        [web_servers] 
+        web1
+        web2
+        web3
+        # all db servers
+        [db_servers] 
+        db1
+        # all servers (using web and db server groups to make a new group)
+        [all_servers:children] 
+        web_servers
+        db_servers
+        ```
 
 
 <br />

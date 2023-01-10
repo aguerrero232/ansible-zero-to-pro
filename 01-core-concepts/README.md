@@ -4,11 +4,14 @@
 * 🏠 [**home**](../README.md)
 * 🧠 **core-concepts**:
     * 🧳 [**inventory**](inventory/README.md)
+    * ▶️ [**playbooks**](playbooks/README.md)
 <br />
 
 ## **Description** 👀
 
 `Core concepts` are the ***fundamental building blocks*** of `Ansible`. These concepts are used to *create and manage* `Ansible` automation's and workflows.
+
+
 
 
 <br />

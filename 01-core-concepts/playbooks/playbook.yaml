@@ -1,23 +1,97 @@
 - 
-  name: Play 1
-  hosts: all
+  name: ships setup
+  hosts: ships
   vars: 
     date: "{{ ansible_date_time.date }}"
     play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+    log: "play-name: {{ansible_play_name}}, host-name: {{ansible_hostname}}, datetime: {{ansible_date_time}}"
   tasks:
-    - name: printing date
-      ansible.builtin.debug:
-        msg: "📅 date:  {{ date }}"
-    - name: printing getting host name
-      ansible.builtin.debug:
-        msg: "🖥️  {{ inventory_hostname }}: {{ ansible_hostname }}"
-    - name: finishing play 1
-      ansible.builtin.debug:
-        msg: "✔️  {{play_name}} finished..."
 
-- 
-  name: Play 2
-  hosts: inventory_target_3
+    - name: make sure {{log_dir}} is there
+      command: "mkdir -p {{log_dir}}"
+      register: dir_status
+
+    - debug:
+        msg: " ✔️  dir: {{log_dir}} exists..."
+      when: dir_status is success 
+
+    - debug:
+        msg: " ❌  couldn't confirm {{log_dir}} existence..."
+      when: dir_status is failed
+
+    - name: make sure {{log_dir}}/{{inventory_hostname}}-ship.txt is there
+      command: "touch {{log_dir}}/{{inventory_hostname}}-ship.txt"
+      register: file_status
+      when: dir_status is success
+
+    - debug:
+        msg: " ✔️  file: {{log_dir}}/{{inventory_hostname}}-ship.txt is located..."
+      when: file_status is success 
+
+    - debug:
+        msg: " ❌  couldn't locate {{log_dir}}/{{inventory_hostname}}-ship.txt..."
+      when: file_status is failed
+
+    - name: write logs
+      copy: 
+        content: "{{log}}"
+        dest: "{{log_dir}}/{{inventory_hostname}}-ship.txt"
+      register: write_status
+      when: file_status is success
+
+    - name: finishing ships setup
+      ansible.builtin.debug:
+        msg: "{{write_status}}"
+
+-
+  name: pilots setup 
+  hosts: pilots
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+    log: "play-name: {{ansible_play_name}}, host-name: {{ansible_hostname}}, datetime: {{ansible_date_time}}"
+  tasks:
+    
+    - name: create pilots dir
+      command: "mkdir -p {{log_dir}}"
+      register: dir_status
+    
+    - debug:
+        msg: " ✔️ {{log_dir}} confirmed..."
+      when: dir_status is success 
+
+    - debug:
+        msg: " ❌  couldn't confirm {{log_dir}} existence..."
+      when: dir_status is failed
+
+    - name: create pilot file
+      command: "touch {{log_dir}}/{{inventory_hostname}}-pilot.txt"
+      register: file_status
+      when: dir_status is success
+
+    - debug:
+        msg: " ✔️  file: {{log_dir}}/{{inventory_hostname}}-pilot.txt is located..."
+      when: file_status is success 
+
+    - debug:
+        msg: " ❌  couldn't locate {{log_dir}}/{{inventory_hostname}}-pilot.txt..."
+      when: file_status is failed
+
+    - name: write logs
+      copy: 
+        content: "{{log}}"
+        dest: "{{log_dir}}/{{inventory_hostname}}-pilot.txt"
+      register: write_status
+      when: file_status is success
+
+    - name: finishing pilots setup
+      ansible.builtin.debug:
+        msg: "{{write_status}}"
+
+-
+  name: nslookup google
+  hosts: pilots
   vars:
     play_name: "{{ ansible_play_name }}"
   tasks:
@@ -31,19 +105,19 @@
       ignore_errors: True
 
     - debug:
-        msg: "❌  command failed..."
+        msg: " ❌  command failed..."
       when: result is failed 
 
     - debug:
-        msg: "🔎  status changed..."
+        msg: " 🔎  status changed..."
       when: result is changed
 
     - debug:
-        msg: "⏭️  command was skipped..."
+        msg: " ⏭️  command was skipped..."
       when: result is skipped
 
     - debug:
-        msg: "✔️  command succeeded..."
+        msg: " ✔️  command succeeded..."
       when: result is success
 
     - shell: dnf provides nslookup -q
@@ -58,7 +132,7 @@
     
     - name: printing provides command result
       ansible.builtin.debug:
-        msg: "📦 found {{ command_package.stdout_lines[0] }}, attempting to install..."
+        msg: " 📦 found {{ command_package.stdout_lines[0] }}, attempting to install..."
       when: result2 is success and result is failed and command_package is defined
 
     - name: installing command package
@@ -66,11 +140,11 @@
       when: result2 is success and result is failed and command_package is defined
     
     - debug:
-        msg: "✔️  package install complete..."
+        msg: " ✔️  package install complete..."
       when: result2 is success 
 
     - debug:
-        msg: "❌  package install failed..."
+        msg: " ❌  package install failed..."
       when: result2 is failed
 
     - name: retry nslookup after fail and install
@@ -79,10 +153,28 @@
       ignore_errors: true
       when: result2 is success
 
-    - debug:  
-        msg: "{{ result }}"
-      when: result is success
-
-    - name: finishing play 2
+    - name: finishing nslookup
       ansible.builtin.debug:
-        msg: "✔️ {{play_name}} finished..."
+        msg: "{{ result }}"
+
+-
+  name: reading ship logs
+  hosts: ships
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    log_dir: "/target_logs"
+  tasks:
+    - name: reading all ship logs
+      command: "cat {{log_dir}}/{{inventory_hostname}}-ship.txt"
+      register: result
+      ignore_errors: True
+
+    - name: print reading results
+      ansible.builtin.debug:
+        msg: "{{ result.stdout }}"
+      when: result is success
+    
+    - name: finishing succsesscle
+      ansible.builtin.debug:
+        msg: " ✔️ {{play_name}} finished..."
+      when: result is success

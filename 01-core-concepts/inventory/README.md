@@ -11,7 +11,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 ## **Basic** `Commands` 📝
 
 
-* **ping** to test the `inventory`
+* **ping** to test `inventory`
 
     ```shell
     ansible <host-or-group> -m ping -i <inventory-config-file>

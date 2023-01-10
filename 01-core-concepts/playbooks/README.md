@@ -9,7 +9,7 @@
 
 <br />
 
-## **Generics** 📝
+## **Basics** 📝
 
 * **execute** an `ansible playbook`
 

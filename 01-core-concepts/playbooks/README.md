@@ -9,12 +9,24 @@
 
 <br />
 
-## **Basic** `Commands` 📝
+## **Generics** 📝
 
-* execute an ansible playbook
+* **execute** an `ansible playbook`
 
     ```shell
     ansible-playbook <path-to/playbook.yml> -i <path-to/inventory.txt>
+    ```
+
+* `playbook.yaml`
+
+    ```yaml
+    -
+        name: <play name>
+        hosts: <host-pattern>
+        tasks:
+            - name: <task name>
+              <module>:
+                <module-args>
     ```
 
 

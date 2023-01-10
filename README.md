@@ -18,8 +18,26 @@
 
 ## **CLI** <image src="assets/img/ansible.png" width="28px">
 
+* imperative style of execution
+
+    ```shell
+    ansible <host-pattern> -m <module> -a <command>
+    ```
+
 * `ansible` **docs**
 
     ```shell
     ansible-doc -l
+    ```
+
+* reboot hosts (`command`)
+
+    ```shell
+    ansible <host-pattern> -a '/sbin/reboot'
+    ```
+
+* ping hosts (`module`)
+
+    ```shell
+    ansible <host-pattern> -m ping
     ```

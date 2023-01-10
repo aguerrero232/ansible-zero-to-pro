@@ -56,8 +56,7 @@
                 state: started
     ```
 
-* click this for a more [**complex example**](./sample-playbook.md)
-* view its output [**here**](./sample-out.md)
+  * [**alternate example**](./sample-playbook.md)
 
 <br />
 

@@ -8,7 +8,6 @@
     - name: create ship file
       command: "touch {{log_dir}}/{{inventory_hostname}}-ship.txt"
       register: file_status
-      when: dir_status is success
 
     - name: set env variable
       ansible.builtin.set_fact:

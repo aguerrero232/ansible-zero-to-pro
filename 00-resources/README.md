@@ -1,20 +1,16 @@
 # <img src="../assets/img/ansible.png" width="30px"> **Ansible** - ***Section 0:*** `Resources` 🗃️
 
-<!-- 
-
-replacing md links with html links
-
-regex: \[\*\*([A-z0-9- *]{1,})\*\*\]\((https://[A-z0-9-./]{1,})\)
-replace: <a href="$2" target="_blank">***$1***</a> 
-
--->
+⚠️ *This guide assumes that you have **python**, **docker**, **docker-compose**, and **ansible** installed on your local machine.* ⚠️
 
 ## ***Table*** *of* ***`Contents`*** 📜
 
 * 🏠 [**home**](../README.md)
 * 🗃️ **resources**
   * 🔗 **links**
-    * 📄 <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
+    * <img src="../assets/img/ansible.png" width="18px"> <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
+    * 🐍 <a href="https://docs.python.org/3/" target="_blank">**python documentation**</a>
+    * 🐳 <a href="https://docs.docker.com/" target="_blank">**docker documentation**</a>
+    * 🐳<sup>🐳</sup> <a href="https://docs.docker.com/compose/" target="_blank">**docker-compose documentation**</a>
 
 <br />
 
@@ -165,7 +161,6 @@ This will get you up and running with ansible. The below configuration will be s
     ```shell
     dnf install procps-ng
     ```
-
 
 <br />
 

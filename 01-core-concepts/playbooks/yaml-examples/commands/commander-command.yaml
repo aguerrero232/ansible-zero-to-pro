@@ -56,4 +56,4 @@
     - include_tasks: ../logs/write-commander-logs.yaml
       vars:
         event: "{{tool}} {{parameter}}"
-        event_result: "{{result}}"
+        event_result: "{{result.stdout_lines[0]}}"

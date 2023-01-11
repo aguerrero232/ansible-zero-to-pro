@@ -16,6 +16,12 @@
 <br />
 
 
+## **Ansible** `Definitions` <image src="assets/img/ansible.png" width="28px">
+
+**`Idempotency`** - An operation is *idempotent* if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.
+
+<br>
+
 ## **CLI** <image src="assets/img/ansible.png" width="28px">
 
 * imperative style of execution

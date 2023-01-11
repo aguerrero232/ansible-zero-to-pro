@@ -8,7 +8,3 @@
   tasks:
     - name: create ship file
       command: touch {{file_name}} creates={{file_name}} chdir={{log_dir}}
-
-    - name: finishing ships setup
-      ansible.builtin.debug:
-        msg: "ships init complete..."

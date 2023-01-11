@@ -1,0 +1,42 @@
+-
+  name: random pokemon
+  hosts: ships
+  tags: ['ship', 'command']
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    tool: "curl"
+    url: "https://retro-pokemon-game-api-k6cgale4bq-uc.a.run.app/pokemon"        
+  tasks:
+    - set_fact:
+        num: "{{800 | random }}"
+      when: num is not defined
+
+    - name: 'getting pokemon #{{num}}...'
+      command: "{{tool}} {{url}}/{{num}}"
+      register: result
+      ignore_errors: true
+  
+    - debug:
+        msg: " ❌  {{tool}} failed..."
+      when: result is failed 
+
+    - debug:
+        msg: " 🔎  {{tool}} status changed..."
+      when: result is changed
+
+    - debug:
+        msg: " ⏭️  {{tool}} was skipped..."
+      when: result is skipped
+
+    - debug:
+        msg: " ✔️  {{tool}} succeeded..."
+      when: result is success
+
+    - name: '{{tool}} result'
+      ansible.builtin.debug:
+        msg: "{{result.stdout}}, num: {{num}}"
+
+    - include_tasks: ../logs/write-ships-logs.yaml
+      vars:
+        event: "{{tool}} {{url}}"
+        event_result: "{{result.stdout}}"

@@ -11,7 +11,5 @@
       command: "cat {{log_dir}}/{{file_name}}"
       register: result
 
-    - name: printing {{play_name}}...
-      ansible.builtin.debug:
+    - ansible.builtin.debug:
         msg: "{{ result.stdout_lines }}"
-      when: result is success

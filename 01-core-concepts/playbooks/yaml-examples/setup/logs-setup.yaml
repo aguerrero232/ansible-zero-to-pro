@@ -8,7 +8,3 @@
   tasks:
     - name: create target dir
       command: mkdir {{log_dir}} creates={{log_dir}} chdir=/
-
-    - name: finishing dir setup
-      ansible.builtin.debug:
-        msg: "dir init complete..."

@@ -1,0 +1,67 @@
+-
+  name: commander command tester
+  hosts: commanders
+  tags: ['commander', 'command']
+  vars:
+    play_name: "{{ ansible_play_name }}"
+    tool: "nslookup"
+    parameter: "google.com"
+  tasks:
+    - name: printing {{tool}} test...
+      ansible.builtin.debug:
+        msg: "attempting {{tool}} of {{parameter}}..."
+
+    - name: '{{tool}} test...'
+      command: "{{tool}} {{parameter}}"
+      register: result
+      ignore_errors: true
+
+    - debug:
+        msg: " ❌  {{tool}} failed..."
+      when: result is failed 
+
+    - debug:
+        msg: " 🔎  {{tool}} status changed..."
+      when: result is changed
+
+    - debug:
+        msg: " ⏭️  {{tool}} was skipped..."
+      when: result is skipped
+
+    - debug:
+        msg: " ✔️  {{tool}} succeeded..."
+      when: result is success
+
+    - name: 'searching for package'
+      shell: "dnf provides {{tool}} -q"
+      register: result2
+      ignore_errors: True
+      when: result is failed
+    
+    - name: 'saving provides command result'
+      command: "echo {{ result2.stdout_lines[0] | regex_search('(.*)-[0-9]:?', '\\1') | first  }}"
+      register: command_package
+      when: result2 is success and result is failed 
+    
+    - name: 'printing provides command result'
+      ansible.builtin.debug:
+        msg: " 📦 found {{ command_package.stdout_lines[0] }}, attempting to install..."
+      when: result2 is success and result is failed
+
+    - name: 'installing command package'
+      command: "dnf -y install {{ command_package.stdout_lines[0] }}"
+      when: result2 is success and result is failed
+
+    - name: 'retry {{tool}} after fail and install'
+      command: "{{tool}} {{parameter}}"
+      register: result
+      when: result2 is success and result is failed
+
+    - name: '{{tool}} result'
+      ansible.builtin.debug:
+        msg: "{{result}}"
+
+    - include_tasks: write-commander-logs.yaml
+      vars:
+        event: "{{tool}} test"
+      when: result is success

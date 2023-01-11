@@ -1,0 +1,10 @@
+- name: writing commander logs...
+  vars: 
+    event: "**DEFAULT EVENT**"
+    log_dir: "/target_logs"
+    file_name: "{{inventory_hostname}}-commander.txt"
+    log: "{inventory_hostname: {{inventory_hostname}}, host-name: {{ansible_hostname}}, date: {{ansible_date_time.date}}, time: {{ansible_date_time.time}}, event: {{event}}},"
+  lineinfile:
+    line: "{{log}}"
+    path: "{{log_dir}}/{{file_name}}"
+  tags: [commander, log, write]

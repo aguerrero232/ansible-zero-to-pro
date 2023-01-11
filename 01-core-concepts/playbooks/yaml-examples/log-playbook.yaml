@@ -1,6 +1,0 @@
-- name: commander logs 
-  import_playbook: commander-logs.yaml
-
-- name: ships logs 
-  import_playbook: ships-logs.yaml
-

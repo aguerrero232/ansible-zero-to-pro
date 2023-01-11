@@ -16,7 +16,7 @@
 
 ## **Description** 👀
 
-Resources for the `Ansible` ***Zero to Pro Guide***. Has images, pdfs, and links to other resources.
+Resources for the `Ansible` ***Zero to Pro Guide***.
 
 <br />
 
@@ -49,6 +49,12 @@ This will get you up and running with ansible. The below configuration will be s
         dockerfile: Dockerfile    
   ```
 
+* ***.env***
+
+  ```yaml
+  COMPOSE_PROJECT_NAME=ansible
+  ```
+
 ***Usage Steps*** 👣
 
   1. Build the containers
@@ -60,7 +66,7 @@ This will get you up and running with ansible. The below configuration will be s
   2. Run the containers
 
       ```shell
-      docker-compose up
+      docker-compose up -d
       ```
 
 <br />

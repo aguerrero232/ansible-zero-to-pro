@@ -1,9 +1,9 @@
 [ships]
-ansible_inventory_target_1 ansible_connection=community.docker.docker
-ansible_inventory_target_2 ansible_connection=community.docker.docker
-ansible_inventory_target_3 ansible_connection=community.docker.docker
-ansible_inventory_target_4 ansible_connection=community.docker.docker
+ansible_target_1 ansible_connection=community.docker.docker
+ansible_target_2 ansible_connection=community.docker.docker
+ansible_target_3 ansible_connection=community.docker.docker
+ansible_target_4 ansible_connection=community.docker.docker
 
 
 [commanders]
-ansible_inventory_controller_1 ansible_connection=community.docker.docker
+ansible_controller_1 ansible_connection=community.docker.docker

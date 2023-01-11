@@ -1,18 +1,13 @@
 -
   name: commanders setup 
   hosts: commanders
+  tags: ['commander', 'setup']
   vars:
-    play_name: "{{ ansible_play_name }}"
     log_dir: "/target_logs"
+    file_name: "{{inventory_hostname}}-commander.txt"
   tasks:
     - name: create commander file
-      command: "touch {{log_dir}}/{{inventory_hostname}}-commander.txt"
-      register: file_status
-
-    - name: set env variable
-      ansible.builtin.set_fact:
-        COMMANDER_SETUP: 1
-      when: file_status is success
+      command: touch {{file_name}} creates={{file_name}} chdir={{log_dir}}
 
     - name: finishing commanders setup
       ansible.builtin.debug:

@@ -1,18 +1,13 @@
 - 
   name: dir setup
   hosts: all
+  tags: ['setup', 'dir']
   vars:
     play_name: "{{ ansible_play_name }}"
     log_dir: "/target_logs"
   tasks:
     - name: create target dir
-      command: "mkdir -p {{log_dir}}"
-      register: dir_status
-
-    - name: set env variable
-      ansible.builtin.set_fact:
-        DIR_SETUP: 1
-      when: dir_status is success
+      command: mkdir {{log_dir}} creates={{log_dir}} chdir=/
 
     - name: finishing dir setup
       ansible.builtin.debug:

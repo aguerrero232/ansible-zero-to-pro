@@ -3,34 +3,34 @@
   hosts: commanders
   tags: ['commander', 'command']
   vars:
-    play_name: "{{ ansible_play_name }}"
-    tool: "nslookup"
-    parameter: "google.com"
+    play_name: '{{ ansible_play_name }}'
+    tool: 'nslookup'
+    parameter: 'google.com'
 
   tasks:
     - name: '{{tool}} test...'
-      command: "{{tool}} {{parameter}}"
+      command: '{{tool}} {{parameter}}'
       register: result
       ignore_errors: true
 
     - debug:
-        msg: " ❌  {{tool}} failed..."
+        msg: ' ❌  {{tool}} failed...'
       when: result is failed 
 
     - debug:
-        msg: " 🔎  {{tool}} status changed..."
+        msg: ' 🔎  {{tool}} status changed...'
       when: result is changed
 
     - debug:
-        msg: " ⏭️  {{tool}} was skipped..."
+        msg: ' ⏭️  {{tool}} was skipped...'
       when: result is skipped
 
     - debug:
-        msg: " ✔️  {{tool}} succeeded..."
+        msg: ' ✔️  {{tool}} succeeded...'
       when: result is success
 
     - name: 'searching for package'
-      shell: "dnf provides {{tool}} -q"
+      shell: 'dnf provides {{tool}} -q'
       register: result2
       ignore_errors: True
       when: result is failed
@@ -40,20 +40,16 @@
       when: result2 is success and result is failed 
     
     - ansible.builtin.debug:
-        msg: " 📦 found {{ command_package.stdout_lines[0] }}, attempting to install..."
+        msg: ' 📦 found {{ command_package.stdout_lines[0] }}, attempting to install...'
       when: result2 is success and result is failed
 
-    - command: "dnf -y install {{ command_package.stdout_lines[0] }}"
+    - command: 'dnf -y install {{ command_package.stdout_lines[0] }}'
       when: result2 is success and result is failed
 
-    - command: "{{tool}} {{parameter}}"
+    - command: '{{tool}} {{parameter}}'
       register: result
-
-    - name: '{{tool}} result'
-      ansible.builtin.debug:
-        msg: "{{result}}"
 
     - include_tasks: ../logs/write-commander-logs.yaml
       vars:
-        event: "{{tool}} {{parameter}}"
-        event_result: "{{result.stdout_lines[0]}}"
+        event: '{{tool}} {{parameter}}'
+        event_result: "'{{result.stdout_lines[0]}}'"

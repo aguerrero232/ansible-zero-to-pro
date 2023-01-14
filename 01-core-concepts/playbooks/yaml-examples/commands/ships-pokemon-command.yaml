@@ -8,10 +8,10 @@
     url: "https://retro-pokemon-game-api-k6cgale4bq-uc.a.run.app/pokemon"        
   tasks:
     - set_fact:
-        num: "{{800 | random }}"
+        num: "{{range(1, 800) | random }}"
       when: num is not defined
 
-    - name: 'getting pokemon #{{num}}...'
+    - name: 'getting a random pokemon...'
       command: "{{tool}} {{url}}/{{num}}"
       register: result
       ignore_errors: true
@@ -32,11 +32,7 @@
         msg: " ✔️  {{tool}} succeeded..."
       when: result is success
 
-    - name: '{{tool}} result'
-      ansible.builtin.debug:
-        msg: "{{result.stdout}}, num: {{num}}"
-
     - include_tasks: ../logs/write-ships-logs.yaml
       vars:
-        event: "{{tool}} {{url}}"
+        event: "{{tool}} {{url}}/{{num}}"
         event_result: "{{result.stdout}}"

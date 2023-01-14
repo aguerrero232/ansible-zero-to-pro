@@ -24,19 +24,20 @@
 
 - name: read ships logs 
   import_playbook: playbooks/yaml-examples/logs/read-ships-logs.yaml
-- 
-  name: logging completion of playbook...
-  hosts: [commanders]
-  tasks:
-    - include_tasks: playbooks/yaml-examples/logs/write-commander-logs.yaml
-      vars:
-        event: "playbook complete"
-        event_result: " 🙌 finished without breaking 💯..."
-- 
-  name: logging completion of playbook...
-  hosts: [ships]
-  tasks:
-    - include_tasks: playbooks/yaml-examples/logs/write-ships-logs.yaml
-      vars:
-        event: "playbook complete"
-        event_result: "👏 finished without breaking 😤..."
+
+# - 
+#   name: logging completion of playbook...
+#   hosts: [commanders]
+#   tasks:
+#     - include_tasks: playbooks/yaml-examples/logs/write-commander-logs.yaml
+#       vars:
+#         event: "playbook complete"
+#         event_result: " 🙌 finished without breaking 💯..."
+# - 
+#   name: logging completion of playbook...
+#   hosts: [ships]
+#   tasks:
+#     - include_tasks: playbooks/yaml-examples/logs/write-ships-logs.yaml
+#       vars:
+#         event: "playbook complete"
+#         event_result: "👏 finished without breaking 😤..."

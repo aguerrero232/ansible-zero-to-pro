@@ -7,4 +7,4 @@
     log_dir: "/target_logs"
   tasks:
     - name: create target dir
-      command: mkdir {{log_dir}} creates={{log_dir}} chdir=/
+      command: mkdir {{log_dir}} chdir=/ creates={{log_dir}}

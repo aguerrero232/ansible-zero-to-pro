@@ -5,7 +5,7 @@
     file_name: "{{inventory_hostname}}-commander.txt"
     event: "**DEFAULT**"
     event_result: "**DEFAULT**"
-    log: "inventory_hostname: {{inventory_hostname}}, host-name: {{ansible_hostname}}, date: {{ansible_date_time.date}}, time: {{ansible_date_time.time}}, event: {{event}}, event_result: {{event_result}}"
+    log: "{'inventory_hostname': '{{inventory_hostname}}', 'host-name': '{{ansible_hostname}}', 'date': '{{ansible_date_time.date}}', 'time': '{{ansible_date_time.time}}', 'event': '{{event}}', event_result: {{event_result}}}"
   lineinfile:
     line: "{{log}}"
     path: "{{log_dir}}/{{file_name}}"

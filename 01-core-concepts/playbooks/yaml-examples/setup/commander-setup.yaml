@@ -7,4 +7,4 @@
     file_name: "{{inventory_hostname}}-commander.txt"
   tasks:
     - name: create commander file
-      command: touch {{file_name}} creates={{file_name}} chdir={{log_dir}}
+      command: touch {{file_name}} chdir={{log_dir}} creates={{file_name}}

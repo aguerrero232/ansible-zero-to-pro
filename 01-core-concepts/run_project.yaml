@@ -1,0 +1,100 @@
+-
+  name: set up docker-compose project
+  hosts: localhost
+  tasks:
+
+    - name: check if containers are running
+      command: docker-compose ps -q
+      register: running_containers
+
+    - name: printing containers if running
+      debug:
+        msg: "{{ running_containers.stdout_lines }}"
+      when: running_containers.stdout != ""
+
+    - name: shut down if running
+      command: docker-compose down
+      register: sd_result
+      when: running_containers.stdout != ""
+
+    - debug:
+        msg: ' ❌  container shutdown failed...'
+      when: sd_result is failed 
+
+    - debug:
+        msg: ' 🔎  container shutdown status changed...'
+      when: sd_result is changed
+
+    - debug:
+        msg: ' ⏭️  container shutdown was skipped...'
+      when: sd_result is skipped
+
+    - debug:
+        msg: ' ✔️  container shutdown succeeded...'
+      when: sd_result is success
+
+    -
+      name: system prune
+      command: docker system prune -a --volumes
+      register: prune_result
+      when: sd_result is success
+
+    - debug:
+        msg: ' ❌  docker system prune failed...'
+      when: prune_result is failed 
+
+    - debug:
+        msg: ' 🔎  docker system prune status changed...'
+      when: prune_result is changed
+
+    - debug:
+        msg: ' ⏭️  docker system prune was skipped...'
+      when: prune_result is skipped
+
+    - debug:
+        msg: ' ✔️  docker system prune succeeded...'
+      when: prune_result is success
+
+    -
+      name: docker-compose build
+      command: docker-compose build
+      register: build_result
+      when: prune_result is success
+
+    - debug:
+        msg: ' ❌  docker-compose build failed...'
+      when: build_result is failed 
+
+    - debug:
+        msg: ' 🔎  docker-compose build status changed...'
+      when: build_result is changed
+
+    - debug:
+        msg: ' ⏭️  docker-compose build was skipped...'
+      when: build_result is skipped
+
+    - debug:
+        msg: ' ✔️  docker-compose build succeeded...'
+      when: build_result is success
+
+    -
+      name: run docker-compose
+      command: docker-compose up -d
+      register: run_result
+      when: build_result is success
+
+    - debug:
+        msg: ' ❌  docker-compose up failed...'
+      when: run_result is failed 
+
+    - debug:
+        msg: ' 🔎  docker-compose up status changed...'
+      when: run_result is changed
+
+    - debug:
+        msg: ' ⏭️  docker-compose up was skipped...'
+      when: run_result is skipped
+
+    - debug:
+        msg: ' ✔️  docker-compose up succeeded...'
+      when: run_result is success

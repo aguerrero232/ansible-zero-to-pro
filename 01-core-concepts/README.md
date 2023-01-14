@@ -6,6 +6,7 @@
     * 🧳 [**inventory**](inventory/README.md)
     * ▶️ [**playbooks**](playbooks/README.md)
     * ⚙️ [**modules**](modules/README.md)
+    * 🔡 [**variables**](variables/README.md)
 <br />
 
 ## **Description** 👀

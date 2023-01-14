@@ -105,5 +105,8 @@ Some categories are:
 
   * why is the state `started`, and not **start**?
     * if the service is already running, the state `started` will not cause any changes, this is called ***idempotent***
+  * **started**, **stopped**, **restarted** ensure that the service is in the desired state
+
+<br/>
 
 [↩️](../README.md)

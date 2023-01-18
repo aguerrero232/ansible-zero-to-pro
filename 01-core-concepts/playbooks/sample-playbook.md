@@ -5,240 +5,279 @@
 * setting up ships
 
     ```yaml
+    # ships-setup.yml
     -
-        name: ships setup
-        hosts: ships
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-        tasks:
+      name: ships setup
+      hosts: ships
+      tags: ['ship', 'setup']
+      vars:
+        log_dir: "/target_logs"
+        file_name: "{{inventory_hostname}}-ship.txt"
+      tasks:
         - name: create ship file
-          command: "touch {{log_dir}}/{{inventory_hostname}}-ship.txt"
-          register: file_status
-
-        - name: set env variable
-          ansible.builtin.set_fact:
-            SHIPS_SETUP: 1
-          when: file_status is success
-
-        - name: finishing ships setup
-          ansible.builtin.debug:
-            msg: "ships init complete..."
+          command: touch {{file_name}}  chdir={{log_dir}} creates={{file_name}}
     ```
 
 * setting up commanders
 
     ```yaml
+    # commander-setup.yml
     -
-        name: commanders setup 
-        hosts: commanders
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-        tasks:
+      name: commanders setup 
+      hosts: commanders
+      tags: ['commander', 'setup']
+      vars:
+        log_dir: "/target_logs"
+        file_name: "{{inventory_hostname}}-commander.txt"
+      tasks:
         - name: create commander file
-          command: "touch {{log_dir}}/{{inventory_hostname}}-commander.txt"
-          register: file_status  
-
-        - name: set env variable
-          ansible.builtin.set_fact:
-            COMMANDER_SETUP: 1
-          when: file_status is success
-
-        - name: finishing commanders setup
-          ansible.builtin.debug:
-            msg: "commanders init complete..."
+          command: touch {{file_name}} chdir={{log_dir}} creates={{file_name}}
     ```
 
 * setting up logs
 
     ```yaml
+    # logs-setup.yml
     - 
-        name: dir setup
-        hosts: all
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-        tasks:
+      name: dir setup
+      hosts: all
+      tags: ['setup', 'dir']
+      vars:
+        play_name: "{{ ansible_play_name }}"
+        log_dir: "/target_logs"
+      tasks:
         - name: create target dir
-          command: "mkdir -p {{log_dir}}"
-          register: dir_status
-
-        - name: set env variable
-          ansible.builtin.set_fact:
-            DIR_SETUP: 1
-          when: dir_status is success
-
-        - name: finishing dir setup
-          ansible.builtin.debug:
-          msg: "dir init complete..."
+          command: mkdir {{log_dir}} chdir=/ creates={{log_dir}}
     ```
 
 
 * ships logs
 
+
+  * read
     ```yaml
+    # read-ships-logs.yml
     -
-        name: ship logs
-        hosts: ships
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-            log: "inventory_hostname: {{inventory_hostname}}, host-name: {{ansible_hostname}}, date: {{ansible_date_time.date}}, time: {{ansible_date_time.time}}"
-        tasks:
+      name: read ship logs
+      hosts: ships
+      tags: ['ship', 'log', 'read']
+      vars:
+        play_name: "{{ ansible_play_name }}"
+        log_dir: "/target_logs"
+        file_name: "{{inventory_hostname}}-ship.txt"
+      tasks:
+        - name: reading {{play_name}}...
+          command: "cat {{log_dir}}/{{file_name}}"
+          register: result
 
-            - name: writing {{play_name}}...
-              copy: 
-                content: "{{log}}"
-                dest: "{{log_dir}}/{{inventory_hostname}}-ship.txt"
-
-            - name: reading {{play_name}}...
-              command: "cat {{log_dir}}/{{inventory_hostname}}-ship.txt"
-              register: result
-
-            - name: printing {{play_name}}...
-              ansible.builtin.debug:
-                msg: "{{ result }}"
-              when: result is success
+        - ansible.builtin.debug:
+            msg: "{{ result.stdout_lines }}"
     ```
+
+  * write
+    ```yaml
+    # write-ships-logs.yml
+    -
+    name: 'writing ship logs...'
+    vars:
+      log_dir: "/target_logs"
+      file_name: "{{inventory_hostname}}-ship.txt"
+      event: "**DEFAULT**"
+      event_result: "**DEFAULT**"
+      log: "{'inventory_hostname': '{{inventory_hostname}}', 'host-name': '{{ansible_hostname}}', 'date': '{{ansible_date_time.date}}', 'time': '{{ansible_date_time.time}}', 'event': '{{event}}', event_result: {{event_result}}}"
+    lineinfile:
+      line: "{{log}}"
+      path: "{{log_dir}}/{{file_name}}"
+    tags: [ship, log, write]
+    ```
+
+
 
 * commanders logs
 
+  * read
+
     ```yaml
+    # read-commander-logs.yml
     -
-        name: commander logs
-        hosts: commanders
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-            log: "inventory_hostname: {{inventory_hostname}}, host-name: {{ansible_hostname}}, date: {{ansible_date_time.date}}, time: {{ansible_date_time.time}}, secret: 'da wey'"
-        tasks:
-            - name: writing {{play_name}}...
-            ansible.builtin.copy:
-                content: "{{log}}"
-                dest: "{{log_dir}}/{{inventory_hostname}}-commander.txt"
-
-            - name: reading {{play_name}}...
-            command: "cat {{log_dir}}/{{inventory_hostname}}-commander.txt"
-            register: result
-
-            - name: printing {{play_name}}...
-            ansible.builtin.debug:
-                msg: "{{ result }}"
-            when: result is success
+      name: commander read logs
+      hosts: commanders
+      tags: [commander, log, read]
+      vars:
+        play_name: "{{ ansible_play_name }}"
+        log_dir: "/target_logs"
+        file_name: "{{inventory_hostname}}-commander.txt"
+      tasks:
+        - name: reading {{play_name}}...
+          command: "cat {{log_dir}}/{{file_name}}"
+          register: result
+        
+        - ansible.builtin.debug:
+            msg: "{{ result.stdout_lines }}"
     ```
 
-* commander runs nslookup on google or installs the package containing nslookup and retries again
+  * write
 
     ```yaml
+    # write-commander-logs.yml
+    - 
+      name: 'writing commander logs...'
+      vars: 
+        log_dir: "/target_logs"
+        file_name: "{{inventory_hostname}}-commander.txt"
+        event: "**DEFAULT**"
+        event_result: "**DEFAULT**"
+        log: "{'inventory_hostname': '{{inventory_hostname}}', 'host-name': '{{ansible_hostname}}', 'date': '{{ansible_date_time.date}}', 'time': '{{ansible_date_time.time}}', 'event': '{{event}}', event_result: {{event_result}}}"
+      lineinfile:
+        line: "{{log}}"
+        path: "{{log_dir}}/{{file_name}}"
+      tags: [commander, log, write]
+  ```
+
+* random tasks
+
+  * commander nslookup 
+    
+    ```yaml
+    # commander-command.yml
     -
-        name: commander google nslookup
-        hosts: commanders
-        vars:
-            play_name: "{{ ansible_play_name }}"
-            log_dir: "/target_logs"
-        tasks:
-            - name: printing nslookup test...
-              ansible.builtin.debug:
-                msg: "attempting nslookup of google.com..."
+      name: commander command tester
+      hosts: commanders
+      tags: ['commander', 'command']
+      vars:
+        play_name: '{{ ansible_play_name }}'
+        tool: 'nslookup'
+        parameter: 'google.com'
 
-            - name: nslookup test...
-              command: "nslookup google.com"
-              register: result
-              ignore_errors: true
+      tasks:
+        - name: '{{tool}} test...'
+          command: '{{tool}} {{parameter}}'
+          register: result
+          ignore_errors: true
 
-            - shell: "dnf provides nslookup -q"
-              register: result2
-              ignore_errors: True
-              when: result is failed
+        - debug:
+            msg: ' ❌  {{tool}} failed...'
+          when: result is failed 
 
-            - name: saving provides command result
-              command: "echo {{ result2.stdout_lines[0] | regex_search('(.*)-[0-9]:?', '\\1') | first  }}"
-              register: command_package
-              when: result2 is success and result is failed 
+        - debug:
+            msg: ' 🔎  {{tool}} status changed...'
+          when: result is changed
 
-            - name: printing provides command result
-              ansible.builtin.debug:
-                msg: " 📦 found {{ command_package.stdout_lines[0] }}, attempting to install..."
-              when: result2 is success and result is failed and command_package is defined
+        - debug:
+            msg: ' ⏭️  {{tool}} was skipped...'
+          when: result is skipped
 
-            - name: installing command package
-              command: "dnf -y install {{ command_package.stdout_lines[0] }}"
-              when: result2 is success and result is failed and command_package is defined
+        - debug:
+            msg: ' ✔️  {{tool}} succeeded...'
+          when: result is success
 
-            - name: retry nslookup after fail and install
-              command: "nslookup google.com"
-              register: result
+        - name: 'searching for package'
+          shell: 'dnf provides {{tool}} -q'
+          register: result2
+          ignore_errors: True
+          when: result is failed
+        
+        - command: "echo {{ result2.stdout_lines[0] | regex_search('(.*)-[0-9]:?', '\\1') | first  }}"
+          register: command_package
+          when: result2 is success and result is failed 
+        
+        - ansible.builtin.debug:
+            msg: ' 📦 found {{ command_package.stdout_lines[0] }}, attempting to install...'
+          when: result2 is success and result is failed
 
-            - name: print nslookup result
-              ansible.builtin.debug:
-                msg: "{{result}}"
-              when: result is success
+        - command: 'dnf -y install {{ command_package.stdout_lines[0] }}'
+          when: result2 is success and result is failed
 
-            - debug:
-                msg: " ❌  command failed..."
-              when: result is failed 
-            - debug:
-                msg: " 🔎  status changed..."
-              when: result is changed
-            - debug:
-                msg: " ⏭️  command was skipped..."
-              when: result is skipped
-            - debug:
-                msg: " ✔️  command succeeded..."
-              when: result is success
+        - command: '{{tool}} {{parameter}}'
+          register: result
 
-            - name: logging commander event
-              copy: 
-                content: "{{result}}"
-                dest: "{{log_dir}}/{{inventory_hostname}}-commander.txt"
-    ```
+        - include_tasks: write-commander-logs.yaml
+          vars:
+            event: '{{tool}} {{parameter}}'
+            event_result: "'{{result.stdout_lines[0]}}'"
+      ```
 
-* setup playbook to run all the setups
+  * ships get random pokemon
 
     ```yaml
-    - name: logs setup
-      import_playbook: setup-logs.yaml
-      when: DIR_SETUP is undefined or DIR_SETUP != 1
+    # ships-pokemon-command.yml
+    -
+      name: random pokemon
+      hosts: ships
+      tags: ['ship', 'command']
+      vars:
+        play_name: "{{ ansible_play_name }}"
+        tool: "curl"
+        url: "https://retro-pokemon-game-api-k6cgale4bq-uc.a.run.app/pokemon"        
+      tasks:
+        - set_fact:
+            num: "{{range(1, 800) | random }}"
+          when: num is not defined
 
-    - name: commander setup
-      import_playbook: commander-setup.yaml
-      when: COMMANDER_SETUP is undefined or COMMANDER_SETUP != 1
+        - name: 'getting a random pokemon...'
+          command: "{{tool}} {{url}}/{{num}}"
+          register: result
+          ignore_errors: true
+      
+        - debug:
+            msg: " ❌  {{tool}} failed..."
+          when: result is failed 
 
-    - name: ships setup
-      import_playbook: ships-setup.yaml
-      when: SHIPS_SETUP is undefined or SHIPS_SETUP != 1
+        - debug:
+            msg: " 🔎  {{tool}} status changed..."
+          when: result is changed
+
+        - debug:
+            msg: " ⏭️  {{tool}} was skipped..."
+          when: result is skipped
+
+        - debug:
+            msg: " ✔️  {{tool}} succeeded..."
+          when: result is success
+
+        - include_tasks: write-ships-logs.yaml
+          vars:
+            event: "{{tool}} {{url}}/{{num}}"
+            event_result: "{{result.stdout}}"
     ```
 
 
-* log playbook to run the two log playbooks
+* use all the playbooks 
 
-    ```yaml
-    - name: commander logs 
-      import_playbook: commander-logs.yaml
-      when: COMMANDER_SETUP==1
-
-    - name: ships logs 
-      import_playbook: ships-logs.yaml
-      when: SHIPS_SETUP==1
-    ```
-
-* main playbook to run the setup and log playbooks
-
-    ```yaml
-    - name: setup
-      import_playbook: playbooks/setup-playbook.yaml
-
-    - name: logging
-      import_playbook: playbooks/log-playbook.yaml
-      when: DIR_SETUP==1
-
-    - name: commander nslookup
-      import_playbook: playbooks/commander-nslookup.yaml
-      when: COMMANDER_SETUP==1
-    ```
+  ```shell
+  ansible-playbook main.yml -i inventory.txt
+  ```
 
 
+  ```yaml
+  # main.yml
+  - name: dir setup
+  run_once: true
+  import_playbook: logs-setup.yaml
+
+  - name: commander setup
+    run_once: true
+    import_playbook: commander-setup.yaml
+
+  - name: ships setup
+    run_once: true
+    import_playbook: ships-setup.yaml
+
+  - name: commander command
+    import_playbook: commander-command.yaml
+    vars:
+      tool: "ls"
+      parameter: "-la"
+
+  - name: ships get random pokemon
+    import_playbook: ships-pokemon-command.yaml
+
+  - name: read commander logs 
+    import_playbook: read-commander-logs.yaml
+
+  - name: read ships logs 
+    import_playbook: read-ships-logs.yaml
+  ```
 
 
 [**view output**](sample-out.md)

@@ -1,43 +1,26 @@
 - name: dir setup
   run_once: true
-  import_playbook: playbooks/yaml-examples/setup/logs-setup.yaml
+  import_playbook: playbooks/yaml-examples/logs-setup.yaml
 
 - name: commander setup
   run_once: true
-  import_playbook: playbooks/yaml-examples/setup/commander-setup.yaml
+  import_playbook: playbooks/yaml-examples/commander-setup.yaml
 
 - name: ships setup
   run_once: true
-  import_playbook: playbooks/yaml-examples/setup/ships-setup.yaml
+  import_playbook: playbooks/yaml-examples/ships-setup.yaml
 
 - name: commander command
-  import_playbook: playbooks/yaml-examples/commands/commander-command.yaml
+  import_playbook: playbooks/yaml-examples/commander-command.yaml
   vars:
     tool: "ls"
     parameter: "-la"
 
 - name: ships get random pokemon
-  import_playbook: playbooks/yaml-examples/commands/ships-pokemon-command.yaml
+  import_playbook: playbooks/yaml-examples/ships-pokemon-command.yaml
 
 - name: read commander logs 
-  import_playbook: playbooks/yaml-examples/logs/read-commander-logs.yaml
+  import_playbook: playbooks/yaml-examples/read-commander-logs.yaml
 
 - name: read ships logs 
-  import_playbook: playbooks/yaml-examples/logs/read-ships-logs.yaml
-
-# - 
-#   name: logging completion of playbook...
-#   hosts: [commanders]
-#   tasks:
-#     - include_tasks: playbooks/yaml-examples/logs/write-commander-logs.yaml
-#       vars:
-#         event: "playbook complete"
-#         event_result: " 🙌 finished without breaking 💯..."
-# - 
-#   name: logging completion of playbook...
-#   hosts: [ships]
-#   tasks:
-#     - include_tasks: playbooks/yaml-examples/logs/write-ships-logs.yaml
-#       vars:
-#         event: "playbook complete"
-#         event_result: "👏 finished without breaking 😤..."
+  import_playbook: playbooks/yaml-examples/read-ships-logs.yaml

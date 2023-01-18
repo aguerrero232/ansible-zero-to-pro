@@ -8,6 +8,13 @@
 `Variables` **can also be used** to store information about a ***group of hosts***, such as the name of a database server or the name of a web server. 
 
 
+To use a `variable`, you must enclose the variable name in double curly braces 
+
+* i.e
+  ```yaml
+  {{<variable-name>}}
+  ```
+
 <br />
 
 ## **Basics** 📝
@@ -15,7 +22,46 @@
 * inventory variables
 
     ```yml
-    # inventory.yml
+    # inventory.txt
+    [<group-name>]
+    <host>
+
+    [<group-name>:vars]
+    <variableX>=<valueY>
+    ```
+
+* playbook variables
+
+    ```yml
+    # playbook.yml
+    - name: <play name> 
+      hosts: <host-pattern>
+      # variables are stored under the `vars` key using the `key: value` format
+      vars:
+        <variableX>: <valueY>
+      tasks:
+        - <module>:
+            <key>: <value>
+    ```
+
+* separate variables file
+
+    ```yml
+    # vars.yml
+    <variableX>: <valueY>
+    ```
+
+  * variable files named after **hosts/groups** allows ansible to load the variables when the **host/group** is referenced
+
+<br />
+
+
+## **Examples** 🧩
+
+* inventory variables
+
+    ```yml
+    # inventory.txt
     [web]
     host1.example.com
     host2.example.com
@@ -47,18 +93,57 @@
 
     ```yml
     # vars.yml
-    dns_server: '{{ dns_server }}'
-
+    variable1: value1
+    variable2: value2
     ```
 
 
+* playbook using variables in variables file
 
 
+    ```yml
+    # inventory.txt
+    [web]
+    host1.example.com
+    host2.example.com
+    ```
 
-<br />
+    ```yml
+    # web.yml
+    http_port: 80
+    snmp_port: 161-162
+    inter_ip_range: 192.0.2.0
+    ```
 
+    * can be used whenever the host is part of the `web` group
 
-## **Examples** 🧩
+    ```yml
+    # playbook.yml
+    -
+      name: Set Firewall Configuration
+      hosts: web
+      tasks:
+
+        - firewalld:
+            service: https
+            permanent: true
+            state: enabled
+
+        - firewalld:
+            port: "{{ http_port }}/tcp"
+            permanent: true
+            state: disabled
+
+        - firewalld:
+            port: "{{ snmp_port }}/udp"
+            permanent: true
+            state: enabled
+
+        - firewalld:
+            source: "{{inter_ip_range}}/24"
+            Zone: internal
+            state: enabled
+    ```
 
 <br />
 

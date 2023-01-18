@@ -7,6 +7,8 @@
     * ▶️ [**playbooks**](playbooks/README.md)
     * ⚙️ [**modules**](modules/README.md)
     * 🔡 [**variables**](variables/README.md)
+    * 🔛 [**conditionals**](conditionals/README.md)
+
 <br />
 
 ## **Description** 👀

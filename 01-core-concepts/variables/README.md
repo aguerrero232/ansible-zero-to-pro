@@ -110,12 +110,12 @@ To use a `variable`, you must enclose the variable name in double curly braces
 
     ```yml
     # web.yml
+    # can be used whenever the host is part of the `web` group
     http_port: 80
     snmp_port: 161-162
     inter_ip_range: 192.0.2.0
     ```
 
-    * can be used whenever the host is part of the `web` group
 
     ```yml
     # playbook.yml

@@ -3,7 +3,7 @@
 * **run** the `playbook`
 
 ```shell
-🚀  ansible-zero-to-pro/01-core-concepts ➜ ansible-playbook main.yaml -i inventory.txt 
+🚀  ansible-zero-to-pro ➜ ansible-playbook main.yaml -i inventory.txt 
 ```
 
 * **`output`**

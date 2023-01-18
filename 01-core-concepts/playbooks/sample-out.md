@@ -2,9 +2,9 @@
 
 * **run** the `playbook`
 
-```shell
-🚀  ansible-zero-to-pro ➜ ansible-playbook main.yml -i inventory.txt 
-```
+    ```shell
+    🚀  ansible-zero-to-pro ➜ ansible-playbook main.yml -i inventory.txt 
+    ```
 
 * **`output`**
 

@@ -14,7 +14,7 @@
 
 * inventory variables
 
-    ```yaml
+    ```yml
     # inventory.yml
     [web]
     host1.example.com
@@ -30,7 +30,7 @@
 
 * playbook variables
 
-    ```yaml
+    ```yml
     # playbook.yml
     - name: Add a DNS server to /etc/resolv.conf 
       hosts: localhost
@@ -45,7 +45,7 @@
 
 * separate variables file
 
-    ```yaml
+    ```yml
     # vars.yml
     dns_server: '{{ dns_server }}'
 

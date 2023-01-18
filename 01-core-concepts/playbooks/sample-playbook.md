@@ -4,7 +4,7 @@
 
 * setting up ships
 
-    ```yaml
+    ```yml
     # ships-setup.yml
     -
       name: ships setup
@@ -20,7 +20,7 @@
 
 * setting up commanders
 
-    ```yaml
+    ```yml
     # commander-setup.yml
     -
       name: commanders setup 
@@ -36,7 +36,7 @@
 
 * setting up logs
 
-    ```yaml
+    ```yml
     # logs-setup.yml
     - 
       name: dir setup
@@ -55,7 +55,7 @@
 
 
   * read
-    ```yaml
+    ```yml
     # read-ships-logs.yml
     -
       name: read ship logs
@@ -75,7 +75,7 @@
     ```
 
   * write
-    ```yaml
+    ```yml
     # write-ships-logs.yml
     -
     name: 'writing ship logs...'
@@ -97,7 +97,7 @@
 
   * read
 
-    ```yaml
+    ```yml
     # read-commander-logs.yml
     -
       name: commander read logs
@@ -118,7 +118,7 @@
 
   * write
 
-    ```yaml
+    ```yml
     # write-commander-logs.yml
     - 
       name: 'writing commander logs...'
@@ -138,7 +138,7 @@
 
   * **commander**: command tester 
     
-    ```yaml
+    ```yml
     # commander-command.yml
     -
       name: commander command tester
@@ -191,7 +191,7 @@
         - command: '{{tool}} {{parameter}}'
           register: result
 
-        - include_tasks: write-commander-logs.yaml
+        - include_tasks: write-commander-logs.yml
           vars:
             event: '{{tool}} {{parameter}}'
             event_result: "'{{result.stdout_lines[0]}}'"
@@ -199,7 +199,7 @@
 
   * **ships**: get random pokemon
 
-    ```yaml
+    ```yml
     # ships-pokemon-command.yml
     -
       name: random pokemon
@@ -235,7 +235,7 @@
             msg: " ✔️  {{tool}} succeeded..."
           when: result is success
 
-        - include_tasks: write-ships-logs.yaml
+        - include_tasks: write-ships-logs.yml
           vars:
             event: "{{tool}} {{url}}/{{num}}"
             event_result: "{{result.stdout}}"
@@ -249,34 +249,34 @@
   ```
 
 
-  ```yaml
+  ```yml
   # main.yml
   - name: dir setup
   run_once: true
-  import_playbook: logs-setup.yaml
+  import_playbook: logs-setup.yml
 
   - name: commander setup
     run_once: true
-    import_playbook: commander-setup.yaml
+    import_playbook: commander-setup.yml
 
   - name: ships setup
     run_once: true
-    import_playbook: ships-setup.yaml
+    import_playbook: ships-setup.yml
 
   - name: commander command
-    import_playbook: commander-command.yaml
+    import_playbook: commander-command.yml
     vars:
       tool: "ls"
       parameter: "-la"
 
   - name: ships get random pokemon
-    import_playbook: ships-pokemon-command.yaml
+    import_playbook: ships-pokemon-command.yml
 
   - name: read commander logs 
-    import_playbook: read-commander-logs.yaml
+    import_playbook: read-commander-logs.yml
 
   - name: read ships logs 
-    import_playbook: read-ships-logs.yaml
+    import_playbook: read-ships-logs.yml
   ```
 
 

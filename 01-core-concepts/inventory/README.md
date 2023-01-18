@@ -23,7 +23,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 * **basic** inventory file
 
-    ```yaml
+    ```yml
     server1.company.com
     server2.company.com
     server3.company.com
@@ -32,7 +32,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 * **basic** inventory file with aliases
 
-    ```yaml
+    ```yml
     web ansible_host=server1.company.com
     db ansible_host=server2.company.com
     mail ansible_host=server3.company.com
@@ -41,7 +41,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
   * some other inventory parameters that can be used:
 
-    ```yaml
+    ```yml
     ansible_port=22
     ansible_user=ansible
     ansible_ssh_pass=ansible
@@ -52,13 +52,13 @@ Information about the target machines is stored in an `inventory`. The `inventor
     * by default the ansible user is set to root (on linux)
     * if you dont have any other hosts to connect to then you can use localhost instead
 
-        ```yaml
+        ```yml
         localhost ansible_connection=localhost
         ```
 
 * **basic** inventory file with groups
   
-    ```yaml
+    ```yml
     [web]
     server1.company.com
     server2.company.com
@@ -70,7 +70,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 * inventory file with linux web servers and windows db servers
 
-    ```yaml
+    ```yml
     web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
     web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
     web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
@@ -79,7 +79,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
     * grouping the servers
 
-        ```yaml
+        ```yml
         # -- servers
         # web servers
         web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
@@ -112,7 +112,7 @@ Information about the target machines is stored in an `inventory`. The `inventor
 
 * `inventory.txt` containing **two** groups and **four** targets.
   
-    ```yaml
+    ```yml
   [group1]
   inventory_target_1 ansible_connection=community.docker.docker
   inventory_target_2 ansible_connection=community.docker.docker

@@ -32,7 +32,7 @@
         msg: " ✔️  {{tool}} succeeded..."
       when: result is success
 
-    - include_tasks: write-ships-logs.yaml
+    - include_tasks: write-ships-logs.yml
       vars:
         event: "{{tool}} {{url}}/{{num}}"
         event_result: "{{result.stdout}}"

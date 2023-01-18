@@ -38,7 +38,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 * ***docker-compose.yml***
 
-  ```yaml
+  ```yml
   version: '3.9'
   services:
     target: &target
@@ -51,7 +51,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 * ***.env***
 
-  ```yaml
+  ```yml
   COMPOSE_PROJECT_NAME=ansible
   ```
 
@@ -71,20 +71,20 @@ This will get you up and running with ansible. The below configuration will be s
 
 <br />
 
-### ***YAML***  <img src="../assets/img/yaml.png" width="26px">
+### ***yml***  <img src="../assets/img/yml.png" width="26px">
 
-`YAML` is a ***human-readable data serialization language***. It is commonly used for *configuration files* and in applications where data is being stored or transmitted. `YAML` is stored in **key value pairs** and can be used to serialize data structures such as *maps, sequences, and scalars*.
+`yml` is a ***human-readable data serialization language***. It is commonly used for *configuration files* and in applications where data is being stored or transmitted. `yml` is stored in **key value pairs** and can be used to serialize data structures such as *maps, sequences, and scalars*.
 
-`YAML` **Syntax**
+`yml` **Syntax**
 
-* `YAML` is case sensitive
+* `yml` is case sensitive
 * Comments are created using the # symbol
 
 **Examples** 🧩
 
 * key value pairs
 
-  ```yaml
+  ```yml
   Fruit: Apple
   Vegetable: Carrot
   Liquid: Water
@@ -93,7 +93,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 * arrays / lists
 
-  ```yaml
+  ```yml
   Fruits:
     - Orange
     - Apple
@@ -107,7 +107,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 * dictionary / map
 
-  ```yaml
+  ```yml
   Banana:
       Calories: 105
       Fat: 0.4g
@@ -121,7 +121,7 @@ This will get you up and running with ansible. The below configuration will be s
 
 * key value / dictionary / lists
 
-  ```yaml
+  ```yml
   Fruits:
     - Banana:
         Calories: 105
@@ -134,7 +134,7 @@ This will get you up and running with ansible. The below configuration will be s
         Carbs: 16g
   ```
 
-***Notice the alignment, this is important in yaml.***
+***Notice the alignment, this is important in yml.***
 
 * You can *either* set a value or a list/dictionary/map but *not both*
 

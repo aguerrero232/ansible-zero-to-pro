@@ -1,0 +1,26 @@
+- name: dir setup
+  run_once: true
+  import_playbook: playbooks/yml-examples/logs-setup.yml
+
+- name: commander setup
+  run_once: true
+  import_playbook: playbooks/yml-examples/commander-setup.yml
+
+- name: ships setup
+  run_once: true
+  import_playbook: playbooks/yml-examples/ships-setup.yml
+
+- name: commander command
+  import_playbook: playbooks/yml-examples/commander-command.yml
+  vars:
+    tool: "ls"
+    parameter: "-la"
+
+- name: ships get random pokemon
+  import_playbook: playbooks/yml-examples/ships-pokemon-command.yml
+
+- name: read commander logs 
+  import_playbook: playbooks/yml-examples/read-commander-logs.yml
+
+- name: read ships logs 
+  import_playbook: playbooks/yml-examples/read-ships-logs.yml

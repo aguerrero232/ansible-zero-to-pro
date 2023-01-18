@@ -37,7 +37,7 @@ Some categories are:
   1. copy scripts to the remote systems
   2. execute scripts on remote systems
 
-  ```yaml
+  ```yml
   - 
     name: <play-name>
     hosts: <host-pattern>
@@ -49,7 +49,7 @@ Some categories are:
 * **service module**
   * manage services - **start**, **stop**, **restart**
 
-  ```yaml
+  ```yml
   - 
     name: <play-name>
     hosts: <host-pattern>
@@ -58,9 +58,9 @@ Some categories are:
       service: name=<service-name> state=<service-state>
   ```
 
-  * *alternate* method of creation using yaml dictionary
+  * *alternate* method of creation using yml dictionary
 
-    ```yaml
+    ```yml
     - 
       name: <play-name>
       hosts: <host-pattern>
@@ -83,7 +83,7 @@ Some categories are:
 
 * **script module** `play`
 
-  ```yaml
+  ```yml
   - 
     name: Sample Script Play - Create Target Log Directory
     hosts: localhost
@@ -94,7 +94,7 @@ Some categories are:
 
 * **service module** `play`
 
-  ```yaml
+  ```yml
   - 
     name: Samlple Service Play - Start Postgres Service
     hosts: localhost

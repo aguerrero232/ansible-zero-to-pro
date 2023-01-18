@@ -1,7 +1,7 @@
 # <img src="../../assets/img/ansible.png" width="30px"> **Ansible** - ***Playbooks*** ▶️
 
 ## **Description** 👀
-`Playbooks` are written in `yaml`, and are the ***main*** way to automate `Ansible`.
+`Playbooks` are written in `yml`, and are the ***main*** way to automate `Ansible`.
 
 * `play`: defines the set of activities (tasks) to be run on hosts
 * `task`: an action to be performed on the host
@@ -17,9 +17,9 @@
     ansible-playbook <path-to/playbook.yml> -i <path-to/inventory.txt>
     ```
 
-* `playbook.yaml`
+* `playbook.yml`
 
-    ```yaml
+    ```yml
     -
         name: <play name>
         hosts: <host-pattern>
@@ -37,7 +37,7 @@
 
 * sample playbook
 
-    ```yaml
+    ```yml
     -
         name: Play 1
         hosts: all

@@ -65,7 +65,7 @@
 
     TASK [command] **********************************************************************************************changed: [ansible_controller_1]
 
-    TASK [include_tasks] ****************************************************************************************included: /home/guerrero/code/ansible-zero-to-pro/01-core-concepts/playbooks/yaml-examples/write-commander-logs.yaml for ansible_controller_1
+    TASK [include_tasks] ****************************************************************************************included: /home/guerrero/code/ansible-zero-to-pro/01-core-concepts/playbooks/yml-examples/write-commander-logs.yml for ansible_controller_1
 
     TASK [writing commander logs...] ****************************************************************************changed: [ansible_controller_1]
 
@@ -121,7 +121,7 @@
         "msg": " ✔️  curl succeeded..."
     }
 
-    TASK [include_tasks] ****************************************************************************************included: /home/guerrero/code/ansible-zero-to-pro/01-core-concepts/playbooks/yaml-examples/write-ships-logs.yaml for ansible_target_1, ansible_target_2, ansible_target_3, ansible_target_4
+    TASK [include_tasks] ****************************************************************************************included: /home/guerrero/code/ansible-zero-to-pro/01-core-concepts/playbooks/yml-examples/write-ships-logs.yml for ansible_target_1, ansible_target_2, ansible_target_3, ansible_target_4
 
     TASK [writing ship logs...] *********************************************************************************changed: [ansible_target_4]
     changed: [ansible_target_2]

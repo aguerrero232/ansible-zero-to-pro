@@ -136,7 +136,7 @@
 
 * random tasks
 
-  * commander nslookup 
+  * **commander**: command tester 
     
     ```yaml
     # commander-command.yml
@@ -197,7 +197,7 @@
             event_result: "'{{result.stdout_lines[0]}}'"
       ```
 
-  * ships get random pokemon
+  * **ships**: get random pokemon
 
     ```yaml
     # ships-pokemon-command.yml

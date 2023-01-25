@@ -18,6 +18,7 @@
 * **when** example; installs `nginx` on `Debian` and `RedHat` based systems
 
     ```yml
+    # when.yml
     ---
     - 
         name: install nginx
@@ -37,10 +38,34 @@
                 when: ansible_os_family == "RedHat"
     ``` 
 
+* **record** output of tasks; mail if service is not running (first checking the service)
+
+    ```yml
+    # register.yml
+    ---
+    - 
+        name: Check Status of Services
+        hosts: localhost
+        tasks:
+            -
+                name: Check HTTPD Status
+                command: service httpd status
+                register: httpd_status
+            
+            -
+                name: Mail HTTPD Status if not running
+
+                mail:
+                    to: someone@job.com
+                    subject: "HTTPD is not running"
+                    body: "{{ httpd_status.stdout }}"
+                when: httpd_status.stdout.find("down") != -1
+    ```
 
 * **loop** example; installs packages based on requirement over an array of packages
 
     ```yml
+    # loop.yml
     ---
     -
         name: Install Packages
@@ -64,34 +89,12 @@
 
     ```
 
-* **record** output of tasks; mail if service is not running (first checking the service)
-
-    ```yml
-    ---
-    - 
-        name: Check Status of Services
-        hosts: localhost
-        tasks:
-            -
-                name: Check HTTPD Status
-                command: service httpd status
-                register: httpd_status
-            
-            -
-                name: Mail HTTPD Status if not running
-
-                mail:
-                    to: someone@job.com
-                    subject: "HTTPD is not running"
-                    body: "{{ httpd_status.stdout }}"
-                when: httpd_status.stdout.find("down") != -1
-    ```
-
     * use **loops** to create arrays
         * when looping over an array of dictionaries you are able to use dot notation for the nested items
         * arrays of dictionaries can also be represented in a json format
 
         ```yml
+        # loop_arr.yml
         ---
         -
             name: Create Users
@@ -140,10 +143,12 @@
         * `with_dict` is used to loop over a dictionary
         * `with_file` is used to loop over a file
         * `with_url` is used to loop over urls
+        * `with_env` is used to loop over environment variables
         * `With_k8s` is used to loop over kubernetes resources
         * `With_inventory_hostnames` is used to loop over inventory hostnames
 
         ```yml
+        # with_star.yml
         ---
         -
             name: Create Users

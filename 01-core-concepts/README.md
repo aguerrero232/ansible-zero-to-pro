@@ -8,6 +8,7 @@
     * ⚙️ [**modules**](modules/README.md)
     * 🔡 [**variables**](variables/README.md)
     * 🔛 [**conditionals**](conditionals/README.md)
+    * 📜 [**roles**](roles/README.md)
 
 <br />
 

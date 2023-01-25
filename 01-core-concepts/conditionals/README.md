@@ -139,11 +139,9 @@
         * `with_items` is the most common
         * `with_dict` is used to loop over a dictionary
         * `with_file` is used to loop over a file
-        * `with_sequence` is used to loop over a sequence of numbers
-        * `with_subelements` is used to loop over a list of dictionaries
-        * `with_together` is used to loop over multiple lists at the same time
-        * `with_nested` is used to loop over multiple lists at the same time
         * `with_url` is used to loop over urls
+        * **With_k8s** is used to loop over kubernetes resources
+        * **With_inventory_hostnames** is used to loop over inventory hostnames
 
         ```yml
         ---

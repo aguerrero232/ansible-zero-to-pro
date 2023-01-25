@@ -58,17 +58,6 @@ Roles introduce a set of best practices that must be followed.
     ansible-galaxy search <role-name>
     ```
 
-<br />
-
-
-## **Examples** 🧩
-
-* 
-
-
-
-
-
 
 <br />
 

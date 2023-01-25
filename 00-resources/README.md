@@ -10,6 +10,8 @@ Resources for the `Ansible` ***Zero to Pro Guide***.
 
 ## 🔗 **links**
   * <img src="../assets/img/ansible.png" width="18px"> <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
+    <!-- * dev guide link https://docs.ansible.com/ansible/latest/dev_guide/  -->
+    * <a href="https://docs.ansible.com/ansible/latest/dev_guide/index.html" target="_blank">**ansible development guide**</a>
   * 🌌 <a href="https://galaxy.ansible.com/docs/" target="_blank">**ansible-galaxy documentation**</a>
   * 🐍 <a href="https://docs.python.org/3/" target="_blank">**python documentation**</a>
   * 🐳 <a href="https://docs.docker.com/" target="_blank">**docker documentation**</a>

@@ -12,6 +12,7 @@
 
 * 🗃️ [***resources***](00-resources/README.md)
 * 🧠 [***core concepts***](01-core-concepts/README.md)
+* 🤯 [***advanced concepts***](02-advanced-concepts/README.md)
 
 <br />
 

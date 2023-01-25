@@ -1,16 +1,4 @@
 # <img src="../assets/img/ansible.png" width="30px"> **Ansible** - ***Section 1:*** `Core Concepts` 🧠
-## ***Table*** *of* ***`Contents`*** 📜
-
-* 🏠 [**home**](../README.md)
-* 🧠 **core-concepts**:
-    * 🧳 [**inventory**](inventory/README.md)
-    * ▶️ [**playbooks**](playbooks/README.md)
-    * ⚙️ [**modules**](modules/README.md)
-    * 🔡 [**variables**](variables/README.md)
-    * 🔛 [**conditionals**](conditionals/README.md)
-    * 📜 [**roles**](roles/README.md)
-
-<br />
 
 ## **Description** 👀
 
@@ -21,4 +9,17 @@
 
 <br />
 
-[↩️](../README.md)
+## ***Table*** *of* ***`Contents`*** 📜
+
+
+* 🧳 [**inventory**](inventory/README.md)
+* ▶️ [**playbooks**](playbooks/README.md)
+* ⚙️ [**modules**](modules/README.md)
+* 🔡 [**variables**](variables/README.md)
+* 🔛 [**conditionals**](conditionals/README.md)
+* 📜 [**roles**](roles/README.md)
+
+<br />
+
+
+[↩️🏠](../README.md)

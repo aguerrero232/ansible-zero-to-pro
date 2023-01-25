@@ -2,10 +2,8 @@
 
 ## ***Table*** *of* ***`Contents`*** 📜
 
-* 🏠 [**home**](../README.md)
-* :section_emoji: **section name**
-  * :sub_section_emoji: [**sub section name**](sub_section_name/README.md)
-  * 🔗 related links for this section
+* :sub_section_emoji: [**sub section name**](sub_section_name/README.md)
+* 🔗 related links for this section
 
 <br />
 

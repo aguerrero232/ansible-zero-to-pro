@@ -2,24 +2,21 @@
 
 ⚠️ *This guide assumes that you have **python**, **docker**, **docker-compose**, and **ansible** installed on your local machine.* ⚠️
 
-## ***Table*** *of* ***`Contents`*** 📜
-
-* 🏠 [**home**](../README.md)
-* 🗃️ **resources**
-  * 🔗 **links**
-    * <img src="../assets/img/ansible.png" width="18px"> <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
-    * 🌌 <a href="https://galaxy.ansible.com/docs/" target="_blank">**ansible-galaxy documentation**</a>
-    * 🐍 <a href="https://docs.python.org/3/" target="_blank">**python documentation**</a>
-    * 🐳 <a href="https://docs.docker.com/" target="_blank">**docker documentation**</a>
-    * 🐳<sup>🐳</sup> <a href="https://docs.docker.com/compose/" target="_blank">**docker-compose documentation**</a>
-
-<br />
-
 ## **Description** 👀
 
 Resources for the `Ansible` ***Zero to Pro Guide***.
 
 <br />
+
+## 🔗 **links**
+  * <img src="../assets/img/ansible.png" width="18px"> <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
+  * 🌌 <a href="https://galaxy.ansible.com/docs/" target="_blank">**ansible-galaxy documentation**</a>
+  * 🐍 <a href="https://docs.python.org/3/" target="_blank">**python documentation**</a>
+  * 🐳 <a href="https://docs.docker.com/" target="_blank">**docker documentation**</a>
+  * 🐳<sup>🐳</sup> <a href="https://docs.docker.com/compose/" target="_blank">**docker-compose documentation**</a>
+
+<br />
+
 
 ## **Helpful** `Content` 📌
 
@@ -171,4 +168,5 @@ This will get you up and running with ansible. The below configuration will be s
 
 <br />
 
-[↩️](../README.md)
+[↩️🏠](../README.md)
+

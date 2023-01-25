@@ -3,12 +3,15 @@
 
 ## **Description** 👀
 
+`Conditionals` are used to **control the flow of execution** of tasks in `Ansible`. They are used to c**heck the state of a system** and then **execute a task based on the result** of the check.
+
+
 <br />
 
-## **Basic** `Commands` 📝
+<!-- ## **Basic** `Commands` 📝
 
 <br />
-
+ -->
 
 ## **Examples** 🧩
 

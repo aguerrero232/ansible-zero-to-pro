@@ -8,6 +8,7 @@
 * 🗃️ **resources**
   * 🔗 **links**
     * <img src="../assets/img/ansible.png" width="18px"> <a href="https://docs.ansible.com/" target="_blank">**ansible documentation**</a>
+    * 🌌 <a href="https://galaxy.ansible.com/docs/" target="_blank">**ansible-galaxy documentation**</a>
     * 🐍 <a href="https://docs.python.org/3/" target="_blank">**python documentation**</a>
     * 🐳 <a href="https://docs.docker.com/" target="_blank">**docker documentation**</a>
     * 🐳<sup>🐳</sup> <a href="https://docs.docker.com/compose/" target="_blank">**docker-compose documentation**</a>

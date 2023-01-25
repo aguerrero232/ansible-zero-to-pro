@@ -10,9 +10,9 @@
 
 ## ***Table*** *of* ***`Contents`*** 📜
 
-* 🗃️ [***resources***](00-resources/README.md)
-* 🧠 [***core concepts***](01-core-concepts/README.md)
-* 🤯 [***advanced concepts***](02-advanced-concepts/README.md)
+0. 🗃️ [***resources***](00-resources/README.md)
+1. 🧠 [***core concepts***](01-core-concepts/README.md)
+2. 🤯 [***advanced concepts***](02-advanced-concepts/README.md)
 
 <br />
 

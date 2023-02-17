@@ -1,0 +1,27 @@
+[
+  {
+    "service": "controller",
+    "ssh_port": "2222",
+    "ip_address": "172.23.0.2"
+  },
+  {
+    "service": "target1",
+    "ssh_port": "2223",
+    "ip_address": "172.23.0.5"
+  },
+  {
+    "service": "target2",
+    "ssh_port": "2224",
+    "ip_address": "172.23.0.3"
+  },
+  {
+    "service": "target3",
+    "ssh_port": "2225",
+    "ip_address": "172.23.0.4"
+  },
+  {
+    "service": "target4",
+    "ssh_port": "2226",
+    "ip_address": "172.23.0.6"
+  }
+]

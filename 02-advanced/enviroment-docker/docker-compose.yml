@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+
+  controller:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "2222:22"
+    expose:
+      - "2222"
+    depends_on:
+      - target1
+      - target2
+      - target3
+      - target4
+
+  target1:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "2223:22"
+    expose:
+      - "2223"
+  
+  target2:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "2224:22"
+    expose:
+      - "2224"
+  
+  target3:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "2225:22"
+    expose:
+      - "2225"
+
+  target4:
+    tty: true
+    build:
+      context: .
+    ports:
+      - "2226:22"
+    expose:
+      - "2226"

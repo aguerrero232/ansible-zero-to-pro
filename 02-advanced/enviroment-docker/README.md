@@ -4,15 +4,20 @@
 
 This is the setup for the ansible docker environment.
 
+
+
+
+
+
 <br />
 
-## **Basic** `Commands` 📝
+<!-- ## **Basic** `Commands` 📝
 
 <br />
 
 
 ## **Examples** 🧩
 
-<br />
+<br /> -->
 
 [↩️](../README.md)

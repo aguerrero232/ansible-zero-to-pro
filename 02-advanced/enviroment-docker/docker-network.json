@@ -1,27 +1,4 @@
-[
-  {
-    "service": "controller",
-    "ssh_port": "2222",
-    "ip_address": "172.23.0.2"
-  },
-  {
-    "service": "target1",
-    "ssh_port": "2223",
-    "ip_address": "172.23.0.5"
-  },
-  {
-    "service": "target2",
-    "ssh_port": "2224",
-    "ip_address": "172.23.0.3"
-  },
-  {
-    "service": "target3",
-    "ssh_port": "2225",
-    "ip_address": "172.23.0.4"
-  },
-  {
-    "service": "target4",
-    "ssh_port": "2226",
-    "ip_address": "172.23.0.6"
-  }
-]
+Starting NetworkHelper for network ubuntu_ssh_default
+name: ubuntu_ssh_default, id: 37b88fd1d83d190613357974383a209601220fbc29a3d7f06fd15d911c1546b7
+[name: ubuntu_ssh_default, id: 37b88fd1d83d190613357974383a209601220fbc29a3d7f06fd15d911c1546b7]
+{'Name': 'ubuntu_ssh_default', 'Id': '37b88fd1d83d190613357974383a209601220fbc29a3d7f06fd15d911c1546b7', 'Created': '2023-02-21T23:46:39.572329191Z', 'Scope': 'local', 'Driver': 'bridge', 'EnableIPv6': False, 'IPAM': {'Driver': 'default', 'Options': None, 'Config': [{'Subnet': '172.25.0.0/16', 'Gateway': '172.25.0.1'}]}, 'Internal': False, 'Attachable': True, 'Ingress': False, 'ConfigFrom': {'Network': ''}, 'ConfigOnly': False, 'Containers': {}, 'Options': {}, 'Labels': {'com.docker.compose.network': 'default', 'com.docker.compose.project': 'ubuntu_ssh', 'com.docker.compose.version': '1.29.2'}}

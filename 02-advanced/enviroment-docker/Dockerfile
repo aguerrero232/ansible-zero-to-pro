@@ -16,8 +16,13 @@ RUN apt update && apt install  openssh-server sudo -y
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
 
 # user and password are test:test, you can change it if you want
-RUN  echo 'test:test' | chpasswd
+RUN echo 'test:test' | chpasswd
 RUN service ssh start
+
+# install python and ansible stuff
+RUN apt install -y make build-essential wget curl \ 
+    python3-openssl python3-pip python-is-python3 && \
+    pip3 install ansible
 
 EXPOSE 22
 
